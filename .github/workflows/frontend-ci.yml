@@ -36,10 +36,10 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install dependencies
-        run: cd frontend && npm ci
+        run: cd ./starter/frontend && npm ci
 
       - name: Run code quality check
-        run: cd frontend && npm run lint -- --fix
+        run: cd ./starter/frontend && npm run lint -- --fix
 
   # test job for test suites
   test:
@@ -68,10 +68,10 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install dependencies
-        run: cd frontend && npm ci
+        run: cd ./starter/frontend && npm ci
 
       - name: Run tests
-        run: cd frontend && npm test
+        run: cd ./starter/frontend && npm test
 
   build:
     needs: [lint, test]
@@ -100,13 +100,13 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install dependencies
-        run: cd frontend && npm ci
+        run: cd ./starter/frontend && npm ci
 
       - name: Create environment variable
         run: REACT_APP_MOVIE_API_URL=http://localhost:6000
 
       - name: Build docker image
-        run: cd frontend && docker build --build-arg=REACT_APP_MOVIE_API_URL --tag=frontend-app:latest .
+        run: cd ./starter/frontend && docker build --build-arg=REACT_APP_MOVIE_API_URL --tag=frontend-app:latest .
 
       - name: Run docker container
-        run: cd frontend && docker run --name frontend-app -p 3000:3000 -d frontend-app
+        run: cd ./starter/frontend && docker run --name frontend-app -p 3000:3000 -d frontend-app
