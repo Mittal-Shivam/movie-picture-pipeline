@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
       - main
+    paths: "starter/frontend/**"
 
 jobs:
   # lint job for code quality
@@ -103,7 +104,7 @@ jobs:
         run: cd ./starter/frontend && npm ci
 
       - name: Create environment variable
-        run: REACT_APP_MOVIE_API_URL=http://localhost:6000
+        run: REACT_APP_MOVIE_API_URL=http://localhost:5000
 
       - name: Build docker image
         run: cd ./starter/frontend && docker build --build-arg=REACT_APP_MOVIE_API_URL --tag=frontend-app:latest .
