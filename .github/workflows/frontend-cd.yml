@@ -3,6 +3,8 @@ name: FE Conitnuous Deployment Workflow
 on:
   workflow_dispatch:
   push:
+    branches:
+      - main
     paths: "starter/frontend/**"
 
 jobs:
@@ -95,7 +97,7 @@ jobs:
         run: cd ./starter/frontend && npm ci
 
       - name: Create environment variable
-        run: REACT_APP_MOVIE_API_URL=http://a7c83d8016ff444028619c025da59b5d-2037546422.us-east-1.elb.amazonaws.com
+        run: REACT_APP_MOVIE_API_URL=http://acd20c68329e9489a8be1a912ad24b5b-998268288.us-east-1.elb.amazonaws.com
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v3
